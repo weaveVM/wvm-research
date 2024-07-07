@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 
 # Data for 1 MB cost
 labels = ['SLER*', 'Celestia', 'Ethereum blobspace (eip-4844)', 'Ethereum calldata']
-costs = [0.0173, 1.216064, 36.30, 660.3904]
+costs = [0.0173, 0.216064, 36.30, 660.3904]
 
 # Plotting
 plt.figure(figsize=(10, 6))
@@ -24,5 +24,5 @@ plt.tick_params(colors='white')
 for bar in bars:
     yval = bar.get_height()
     plt.text(bar.get_x() + bar.get_width()/2, yval + 10, round(yval, 2), ha='center', color='white')
-
+plt.savefig("data_cost_comparison.png")
 plt.show()
