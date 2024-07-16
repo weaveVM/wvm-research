@@ -12,10 +12,10 @@ GWEI_TO_ETH = 1e-9
 ETH_BASE_FEE_GWEI = 6
 WVM_BASE_FEE_GWEI = 1.5
 CELESTIA_BASE_FEE_GWEI = 8
-BASE_BASE_FEE_GWEI = 0.01
-ARB_BASE_FEE_GWEI = 0.01
+BASE_BASE_FEE_GWEI = 0.013
+ARB_BASE_FEE_GWEI = 0.016
 EIGEN_DA_PER_GB_PRICE = 0.15 # 0.15 ETH
-CELETIA_GAS_PRICE = 0.0136 # uTIA source: https://celenium.io/gas
+CELETIA_GAS_PRICE = 0.015 # uTIA source: https://celenium.io/gas
 
 ETH_PRICE = 0
 AR_PRICE = 0
@@ -108,7 +108,7 @@ colors = ['#00ff00', '#00cc00', '#009900', '#006600', '#003300']  # Different sh
 bars = plt.bar(platforms, costs, color=colors)
 # Add title and labels
 plt.title('Cost of Storing 128KB on Different DA solutions\n JSON-serialization for WeaveVM data on Arweave')
-plt.xlabel('Solution')
+plt.xlabel('\nSolutions')
 plt.ylabel('Cost in USD')
 plt.ylim(0, max(costs) + 1)  # Add some space above the highest bar
 
