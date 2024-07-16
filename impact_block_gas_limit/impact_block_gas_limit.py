@@ -1,3 +1,7 @@
+###
+# forked from https://github.com/nerolation/eth-gas-limit-analysis
+###
+
 from web3 import Web3
 import snappy
 import os 
@@ -133,5 +137,5 @@ plt.xticks(fontsize=14)
 plt.tight_layout()
 ax.grid(color='gray', linestyle='-', linewidth=0.5)
 ax.legend_ = None
-plt.savefig("impact_block_gas_limit.png")
+plt.savefig("./impact_block_gas_limit/impact_block_gas_limit.png")
 plt.show()
