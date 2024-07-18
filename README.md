@@ -29,5 +29,13 @@ This comparison shows that using [Borsh](https://github.com/near/borsh) serializ
 
 ![](./borsh_vs_json_serialization/compare.png)
 
+### `serialization_compression_benchmark`
+In this section, we test various compression algorithms using two data serialization methods (JSON and Borsh) on an [empty WeaveVM block](https://q55zvezq436ucq3tgrbqsve5rkyxgxtzgx4ybohbbjkpi3lyb54q.arweave.net/h3uakzDm_UFDczRDCVSdirFzXnk1-YC44QpU9G14D3k). We observe that with Borsh serialization, Gzip is the most efficient compression algorithm. On the other hand, for JSON-serialized block data, paq9a provides the best compression ratio.
+
+![](./serialization_compression_benchmark/borsh_serialized/borsh_serialized.png)
+
+![](./serialization_compression_benchmark/json_serialized/json_serialized.png)
+
+
 ## License
 This repository is licensed under the [MIT License](./LICENSE)
