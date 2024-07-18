@@ -6,6 +6,7 @@ from web3 import Web3
 import snappy
 import os 
 EXECUTION = True
+import matplotlib.cm as cm
 
 if EXECUTION:
     provider_url = 'https://testnet-rpc.wvm.dev'  # WeaveVM testnet RPC URL
@@ -124,7 +125,7 @@ def format_func(value, tick_number):
 plt.style.use('dark_background')
 x = gas_limits
 y = block_sizes
-colors = cm.Blues(0.7)
+colors = cm.Greens(0.7)
 fig, ax = plt.subplots(figsize=(12, 4))
 plt.rcParams['font.family'] = 'Ubuntu Mono'
 ax.fill_between(x, y, color=colors, alpha=0.8)
