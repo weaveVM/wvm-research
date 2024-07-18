@@ -18,8 +18,14 @@ This script provides an outline of the DA costs across various DA solutions. In 
 
 ![](./json_serialized_da_cost_comparison/da_cost_comparison.png)
 
+### `borsh_serialized_da_cost_comparison`
+
+Here, we have recalculated the DA costs, achieving an approximate 50% reduction in data costs for settling data on Arweave by employing Borsh serialization.
+
+![](./borsh_serialized_da_cost_comparison/da_cost_comparison.png)
+
 ### `borsh_vs_json_serialization`
-This comparison shows that using [Borsh](https://github.com/near/borsh) serialization results in approximately a 26.6% reduction in data size compared to JSON serialization. This reduction significantly lowers the Arweave fees incurred by WeaveVM for posting data on Arweave.
+This comparison shows that using [Borsh](https://github.com/near/borsh) serialization results in approximately a 26.6% reduction in data size compared to JSON serialization (~50% achieved in Rust Borsh). This reduction significantly lowers the Arweave fees incurred by WeaveVM for posting data on Arweave.
 
 ![](./borsh_vs_json_serialization/compare.png)
 
