@@ -36,6 +36,10 @@ In this section, we test various compression algorithms using two data serializa
 
 ![](./serialization_compression_benchmark/json_serialized/json_serialized.png)
 
+### `borsh_gzip_wvm_cost`
+After concluding that Gzip compression with Borsh serialization achieves the best compression ratio for WeaveVM data settling on Arweave, let's re-evaluate the data costs across different DA solutions.
+
+![](./borsh_gzip_wvm_cost/borsh_gzip_wvm_cost.png)
 
 ## License
 This repository is licensed under the [MIT License](./LICENSE)
