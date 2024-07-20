@@ -1,17 +1,17 @@
 import requests
 from borsh_construct import String
-import gzip
+import brotli
 import matplotlib.pyplot as plt
 sample_built_data = 'abc{a{}12345zz0xABCD"""""' * 40000 # 1_000_000 byte
 # borsh serialized data
 built_data = String.build(sample_built_data)
-# Gzip compressed 1MB
-compressed_1mb_gzip = gzip.compress(built_data)
-print(len(compressed_1mb_gzip))
+# Brotli compressed 1MB
+compressed_1mb_brotli = brotli.compress(built_data)
+print(len(compressed_1mb_brotli))
 
 KILOBYTE = 1_000
 CASE_STUDY_1MB = 1_000 * KILOBYTE
-ARWEAVE_1MB_BORSH_GZIP_PRICE_URL = f"https://arweave.net/price/{len(compressed_1mb_gzip)}"
+ARWEAVE_1MB_BORSH_GZIP_PRICE_URL = f"https://arweave.net/price/{len(compressed_1mb_brotli)}"
 COINGECKO_TOKENS_URL = "https://api.redstone.finance/prices?symbols=AR,TIA,ETH,BASE&provider=redstone"
 
 BASE_FEE = 21_000
@@ -121,7 +121,7 @@ plt.figure(figsize=(10, 6))
 colors = ['#00ff00', '#00cc00', '#009900', '#006600', '#003300']  # Different shades of green
 bars = plt.bar(platforms, costs, color=colors)
 # Add title and labels
-plt.title('Cost of Storing 1MB on Different DA solutions\n Borsh-Gzip WeaveVM data settling on Arweave')
+plt.title('Cost of Storing 1MB on Different DA solutions\n Borsh-Brotli WeaveVM data settling on Arweave')
 plt.xlabel('\nSolutions')
 plt.ylabel('Cost in USD')
 plt.ylim(0, max(costs) + 1)  # Add some space above the highest bar
@@ -133,5 +133,5 @@ for bar in bars:
     label = f'{yval:.5f}'
     plt.text(bar.get_x() + bar.get_width()/2, yval + 0.03, label, ha='center', va='bottom', color='white')
 
-plt.savefig("./borsh_gzip_wvm_cost/borsh_gzip_wvm_cost.png")
+plt.savefig("./borsh_brotli_wvm_cost/borsh_brotli_wvm_cost.png")
 plt.show()
