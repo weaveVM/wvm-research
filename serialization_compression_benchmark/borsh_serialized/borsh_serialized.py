@@ -7,6 +7,8 @@ from borsh_construct import U8, U64, String, CStruct, Option, Vec
 from construct import Container
 import matplotlib.pyplot as plt
 import brotli
+import pyzstd
+import zlib
 
 # Define Hex as a string for simplicity
 Hex = String
@@ -107,9 +109,18 @@ length_built_data = len(built_data)
 
 print(f"Original size: {len(built_data)}")
 
-# paq9a compression
+# zstd compression
+compressed_zstd = pyzstd.compress(built_data)
+print(f"zstd compressed size: {len(compressed_zstd)}")
+
+# zlib compression
+compressed_zlib = zlib.compress(built_data)
+print(f"zlib compressed size: {len(compressed_zlib)}")
+
+# Brotli compression
 compressed_brotli = brotli.compress(built_data)
 print(f"Brotli compressed size: {len(compressed_brotli)}")
+
 # paq9a compression
 compressed_paq = paq.compress(built_data)
 print(f"PAQ compressed size: {len(compressed_paq)}")
@@ -136,9 +147,11 @@ plt.style.use('dark_background')
 plt.style.use('dark_background')
 
 # Data
-methods = ['Borsh-serialized\n(no compression)', 'Brotli', 'Bzip2', 'PAQ9A', 'Gzip', 'LZMA', 'Snappy']
+methods = ['Borsh-serialized\n(no compression)', 'zstd', 'zlib', 'Brotli', 'Bzip2', 'PAQ9A', 'Gzip', 'LZMA', 'Snappy']
 sizes = [
     len(built_data),
+    len(compressed_zstd),
+    len(compressed_zlib),
     len(compressed_brotli),
     len(compressed_bz2),
     len(compressed_paq),
