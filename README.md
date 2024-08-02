@@ -40,8 +40,12 @@ In this section, we test various compression algorithms using two data serializa
 
 ![](./borsh_gzip_wvm_cost/borsh_gzip_wvm_cost.png)
 
-### `borsh_brotli_wvm_cost`
+### `borsh_brotli_wvm_cost: Testnet V0`
 
 ![](./borsh_brotli_wvm_cost/borsh_brotli_wvm_cost.png)
 ## License
 This repository is licensed under the [MIT License](./LICENSE)
+
+### `borsh_brotli_wvm_cost: Testnet V0.5`
+
+![](./borsh_brotli_wvm_cost_testnet_v0.5/borsh_brotli_wvm_cost_testnet_v0.5.png)
