@@ -29,15 +29,15 @@ ETH_PRICE = 0
 AR_PRICE = 0
 BASE_PRICE = 0
 TIA_PRICE = 0
-ARWEAVE_128KB_PRICE = 0
+ARWEAVE_1MB_PRICE = 0
 
 # for plot
-PLOT_WVM_128KB_USD_COST = 0
-PLOT_ETH_CALLDATA_128KB_USD_COST = 0
-PLOT_BASE_CALLDATA_128KB_COST = 0
-PLOT_ARB_CALLDATA_128KB_COST = 0
-PLOT_EIGENDA_CALLDATA_128KB_COST = 0
-PLOT_CELESTIA_CALLDATA_128KB_COST = 0
+PLOT_WVM_1MB_USD_COST = 0
+PLOT_ETH_CALLDATA_1MB_USD_COST = 0
+PLOT_BASE_CALLDATA_1MB_COST = 0
+PLOT_ARB_CALLDATA_1MB_COST = 0
+PLOT_EIGENDA_CALLDATA_1MB_COST = 0
+PLOT_CELESTIA_CALLDATA_1MB_COST = 0
 
 def get_winston_cost_of(input_byte):
     res = requests.get(f"https://arweave.net/price/{input_byte}")
@@ -49,8 +49,8 @@ def get_winston_cost_of(input_byte):
 # fetch winston cost to store on Arweave
 arweave_gateway_res = requests.get(ARWEAVE_1MB_BORSH_GZIP_PRICE_URL)
 if arweave_gateway_res.status_code == 200:
-    ARWEAVE_128KB_PRICE = arweave_gateway_res.text  
-    print(ARWEAVE_128KB_PRICE)
+    ARWEAVE_1MB_PRICE = arweave_gateway_res.text  
+    print(ARWEAVE_1MB_PRICE)
 else:
     print("Failed to fetch data: Status code", arweave_gateway_res.status_code)
 
@@ -68,34 +68,34 @@ if coingecko_res.status_code == 200:
 else:
     print("err: ", coingecko_res.status_code)
 
-def weavevm_128kb_usd_cost():
-    arweave_128kb_usd_cost = float(ARWEAVE_128KB_PRICE) * AR_PRICE * 1e-12
-    wvm_128kb_calldata = CALLDATA_GAS_PER_BYTE * CASE_STUDY_1MB * WVM_BASE_FEE_GWEI * GWEI_TO_ETH * 3.25
-    PLOT_WVM_128KB_USD_COST = wvm_128kb_calldata + arweave_128kb_usd_cost
-    print(PLOT_WVM_128KB_USD_COST)
-    return PLOT_WVM_128KB_USD_COST
+def weavevm_1mb_usd_cost():
+    arweave_1mb_usd_cost = float(ARWEAVE_1MB_PRICE) * AR_PRICE * 1e-12
+    wvm_1mb_calldata = CALLDATA_GAS_PER_BYTE * CASE_STUDY_1MB * WVM_BASE_FEE_GWEI * GWEI_TO_ETH * 3.25
+    PLOT_WVM_1MB_USD_COST = wvm_1mb_calldata + arweave_1mb_usd_cost
+    print(PLOT_WVM_1MB_USD_COST)
+    return PLOT_WVM_1MB_USD_COST
 
 def eth_overhead_tx_usd_cost():
     return (BASE_FEE * ETH_BASE_FEE_GWEI * GWEI_TO_ETH * ETH_PRICE)
 
-def eth_calldata_128kb_usd_cost():
-    eth_128kb_cost = CALLDATA_GAS_PER_BYTE * CASE_STUDY_1MB * ETH_BASE_FEE_GWEI * GWEI_TO_ETH * ETH_PRICE
-    print(eth_128kb_cost)
-    return eth_128kb_cost
+def eth_calldata_1mb_usd_cost():
+    eth_1mb_cost = CALLDATA_GAS_PER_BYTE * CASE_STUDY_1MB * ETH_BASE_FEE_GWEI * GWEI_TO_ETH * ETH_PRICE
+    print(eth_1mb_cost)
+    return eth_1mb_cost
 
-def base_calldata_128kb_usd_cost():
+def base_calldata_1mb_usd_cost():
     eth_settling_cost = eth_overhead_tx_usd_cost()
-    base_128kb_cost = CALLDATA_GAS_PER_BYTE * CASE_STUDY_1MB * BASE_BASE_FEE_GWEI * GWEI_TO_ETH * ETH_PRICE
-    PLOT_BASE_CALLDATA_128KB_COST = base_128kb_cost + eth_settling_cost
-    return PLOT_BASE_CALLDATA_128KB_COST
+    base_1mb_cost = CALLDATA_GAS_PER_BYTE * CASE_STUDY_1MB * BASE_BASE_FEE_GWEI * GWEI_TO_ETH * ETH_PRICE
+    PLOT_BASE_CALLDATA_1MB_COST = base_1mb_cost + eth_settling_cost
+    return PLOT_BASE_CALLDATA_1MB_COST
 
-def arb_calldata_128kb_usd_cost():
+def arb_calldata_1mb_usd_cost():
     eth_settling_cost = eth_overhead_tx_usd_cost()
-    arb_128kb_cost = CALLDATA_GAS_PER_BYTE * CASE_STUDY_1MB * ARB_BASE_FEE_GWEI * GWEI_TO_ETH * ETH_PRICE
-    PLOT_ARB_CALLDATA_128KB_COST = arb_128kb_cost + eth_settling_cost
-    return PLOT_ARB_CALLDATA_128KB_COST
+    arb_1mb_cost = CALLDATA_GAS_PER_BYTE * CASE_STUDY_1MB * ARB_BASE_FEE_GWEI * GWEI_TO_ETH * ETH_PRICE
+    PLOT_ARB_CALLDATA_1MB_COST = arb_1mb_cost + eth_settling_cost
+    return PLOT_ARB_CALLDATA_1MB_COST
 
-def eigenda_128kb_usd_cost():
+def eigenda_1mb_usd_cost():
     cost_per_gb_eth = 0.15  # Cost to store 1 GB in ETH
     cost_per_mb_eth = cost_per_gb_eth / 1000
     cost_per_kb_eth = cost_per_mb_eth / 1000
@@ -103,16 +103,16 @@ def eigenda_128kb_usd_cost():
     return PLOT_EIGENDA_CALLDATA_1MB_COST
     
 
-def celestia_128kb_usd_cost():
-    PLOT_CELESTIA_CALLDATA_128KB_COST = CASE_STUDY_1MB * CELESTIA_BASE_FEE_GWEI * CELETIA_GAS_PRICE * 1e-6 * TIA_PRICE
-    return (PLOT_CELESTIA_CALLDATA_128KB_COST)
+def celestia_1mb_usd_cost():
+    PLOT_CELESTIA_CALLDATA_1MB_COST = CASE_STUDY_1MB * CELESTIA_BASE_FEE_GWEI * CELETIA_GAS_PRICE * 1e-6 * TIA_PRICE
+    return (PLOT_CELESTIA_CALLDATA_1MB_COST)
 
 # Names of the platforms
 platforms = ['WeaveVM Calldata', 'EigenDA', 'Celestia', 'Base Calldata', 'Arb Calldata'] # add: 'Ethereum Calldata'
 
-print(PLOT_WVM_128KB_USD_COST)
-# Corresponding costs in USD for storing 128KB
-costs = [weavevm_128kb_usd_cost(),eigenda_128kb_usd_cost(), celestia_128kb_usd_cost(), base_calldata_128kb_usd_cost(), arb_calldata_128kb_usd_cost()] # add: eth_calldata_128kb_usd_cost()
+print(PLOT_WVM_1MB_USD_COST)
+# Corresponding costs in USD for storing 1MB
+costs = [weavevm_1mb_usd_cost(),eigenda_1mb_usd_cost(), celestia_1mb_usd_cost(), base_calldata_1mb_usd_cost(), arb_calldata_1mb_usd_cost()] # add: eth_calldata_128kb_usd_cost()
 
 plt.style.use('dark_background')
 # Create a bar plot
