@@ -122,7 +122,7 @@ plt.figure(figsize=(10, 6))
 colors = ['#00ff00', '#00cc00', '#009900', '#006600', '#003300']  # Different shades of green
 bars = plt.bar(platforms, costs, color=colors)
 # Add title and labels
-plt.title('Cost of Storing 1MB on Different DA solutions\n Borsh-Brotli WeaveVM data settling on Arweave\n(05-08-2024)')
+plt.title('Cost of Storing 1MB on Different DA solutions\n Borsh-Brotli WeaveVM data settling on Arweave\n(30-08-2024)')
 plt.xlabel('\nSolutions')
 plt.ylabel('Cost in USD')
 plt.ylim(0, max(costs) + 1)  # Add some space above the highest bar
